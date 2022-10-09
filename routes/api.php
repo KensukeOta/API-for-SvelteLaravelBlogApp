@@ -16,7 +16,11 @@ use App\Http\Controllers\UserController;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    return response()->json($request->user());
+});
+
+Route::get('/', function () {
+    return response()->json('helloworld');
 });
 
 Route::post('/users/create', [UserController::class, 'create']);
