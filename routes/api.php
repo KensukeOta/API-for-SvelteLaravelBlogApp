@@ -25,4 +25,5 @@ Route::post('/users/create', [UserController::class, 'create']);
 Route::controller(PostController::class)->group(function () {
     Route::get('/posts', 'index');
     Route::post('/posts/create', 'create');
+    Route::get('/posts/{id}', 'show')->where('id', '[0-9]+');
 });

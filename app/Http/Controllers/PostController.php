@@ -27,4 +27,10 @@ class PostController extends Controller
             'user_id' => $request->user_id,
         ]);
     }
+
+    public function show($id)
+    {
+        $post = Post::with('user')->findOrFail($id);
+        return response()->json($post);
+    }
 }
