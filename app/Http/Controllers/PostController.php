@@ -49,4 +49,10 @@ class PostController extends Controller
                 'user_id' => $request->user_id,
             ]);
     }
+
+    public function destroy($id)
+    {
+        Post::where('id', $id)
+            ->delete();
+    }
 }
