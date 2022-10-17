@@ -33,4 +33,20 @@ class PostController extends Controller
         $post = Post::with('user')->findOrFail($id);
         return response()->json($post);
     }
+
+    public function update($id, Request $request)
+    {
+        $request->validate([
+            'title' => ['required', 'between:1,50'],
+            'body' => ['required', 'max:1000'],
+            'user_id' => ['required'],
+        ]);
+
+        Post::where('id', $id)
+            ->update([
+                'title' => $request->title,
+                'body' => $request->body,
+                'user_id' => $request->user_id,
+            ]);
+    }
 }

@@ -26,4 +26,5 @@ Route::controller(PostController::class)->group(function () {
     Route::get('/posts', 'index');
     Route::post('/posts/create', 'create');
     Route::get('/posts/{id}', 'show')->where('id', '[0-9]+');
+    Route::patch('/posts/{id}/update', 'update')->where('id', '[0-9]+');
 });
