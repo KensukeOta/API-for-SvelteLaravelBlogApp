@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return response()->json($request->user());
 });
 
-Route::get('/', function () {
-    return response()->json('helloworld');
-});
-
 Route::post('/users/create', [UserController::class, 'create']);
+
+Route::controller(PostController::class)->group(function () {
+    Route::post('/posts/create', 'create');
+});
